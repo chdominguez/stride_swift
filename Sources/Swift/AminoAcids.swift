@@ -10,11 +10,11 @@ import Foundation
 // Value type which contains the residue name, the structure, phi, psi angles and the area.
 public struct Residue {
     // Default values:
-    let type: AminoAcid
-    let structure: SecondaryStructure
-    let phi: Float
-    let psi: Float
-    let area: Float
+    public let type: AminoAcid
+    public let structure: SecondaryStructure
+    public let phi: Float
+    public let psi: Float
+    public let area: Float
 }
 
 // An enum that defines AminoAcids and its properties

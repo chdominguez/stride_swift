@@ -37,5 +37,5 @@ void ContactMap(CHAIN **Chain, int NChain, COMMAND *Cmd )
       }
     }
   }
-  exit(0);
+    die("Bad exit from contact map");
 }

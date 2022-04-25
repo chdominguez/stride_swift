@@ -3,7 +3,6 @@
     
 void ContactOrder(CHAIN **Chain, int NChain, COMMAND *Cmd )
 {
-
   register int Res1, Res2, At1, At2;
   int Cn, From, To, NumberOfContacts;
   char PDB_Start[RES_FIELD], PDB_End[RES_FIELD];
@@ -62,5 +61,6 @@ void ContactOrder(CHAIN **Chain, int NChain, COMMAND *Cmd )
     printf("%s %c %d ( %s ) %d ( %s ) %5.1f\n",
 	   Chain[Cn]->PdbIdent,SpaceToDash(Chain[Cn]->Id),From,PDB_Start,To-1,PDB_End,CO);
   }
-  exit(0);
+    
+    die("Bad exit from contact order");
 }

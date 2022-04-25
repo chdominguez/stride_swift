@@ -306,6 +306,11 @@ typedef struct {
 		 float Corr, Perc;
 	       } QUALITY;
 
+typedef struct {
+    CHAIN** chain;
+    int NChain;
+} RChain;
+
 #include "protot.h"
 #include "nsc.h"
 

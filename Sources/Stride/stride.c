@@ -2,9 +2,8 @@
 
 /* #include <console.h> */  /* For Macintosh only, see readme.mac */
 
-int main(int argc, char **argv)
+RChain stride(int argc, char **argv)
 {
-
   CHAIN **Chain;
   HBOND **HBond;
   COMMAND *Cmd;
@@ -90,16 +89,22 @@ int main(int argc, char **argv)
     }
   }
     
-  Report(Chain,NChain,HBond,Cmd);
+  //Report(Chain,NChain,HBond,Cmd);
+    
+    
+    RChain rchain;
+    
+    rchain.chain = Chain;
+    rchain.NChain = NChain;
 
   if( Cmd->MolScript )
     MolScript(Chain,NChain,Cmd);
 
-  for( i=0; i<Cn; i++ ) free(Chain[i]);
+  //for( i=0; i<Cn; i++ ) free(Chain[i]);
   for( i=0; i<NHBond; i++ ) free(HBond[i]);
   free(Cmd);
 
-  return(0);
+    return rchain;
 }
 
 void ProcessStrideOptions(char **List, int ListLength, COMMAND *Cmd)

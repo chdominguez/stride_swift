@@ -10,6 +10,6 @@
 
 #include<../stride.h>
 
-RChain stride(int argc, char **argv);
+RChain stride(int argc, char **argv, int showReport);
 
 #endif /* Header_h */

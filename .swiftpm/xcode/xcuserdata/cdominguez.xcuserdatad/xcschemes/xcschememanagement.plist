@@ -22,6 +22,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>CStride</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>StrideTests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>SwiftStride</key>
 		<dict>
 			<key>primary</key>

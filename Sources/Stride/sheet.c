@@ -1,4 +1,5 @@
 #include "stride.h"
+#include "stdio.h"
 
 
 void Sheet(CHAIN **Chain, int Cn1, int Cn2, HBOND **HBond, COMMAND *Cmd, float **PhiPsiMap)
@@ -33,14 +34,17 @@ void Sheet(CHAIN **Chain, int Cn1, int Cn2, HBOND **HBond, COMMAND *Cmd, float *
 
     if( (!Res1->Inv->NBondDnr && !Res1->Inv->NBondAcc) ||
         ((Cn1 != Cn2) && !Res1->Inv->InterchainHBonds) )
-      continue;
-
+        continue;
+      
     RA     = R1+1;
     R2     = R1+2;
-    Res1m1 = Chain[Cn1]->Rsd[R1-1];
+      
+    if (R1-1 == -1) {Res1m1 = NULL;}
+    else {Res1m1 = Chain[Cn1]->Rsd[R1];}
+      
     ResA   = Chain[Cn1]->Rsd[RA];
-    Res2   = Chain[Cn1]->Rsd[R2]; 
-
+    Res2   = Chain[Cn1]->Rsd[R2];
+      
     if( R2 >= Chain[Cn1]->NRes || 
         Res1->Prop->PhiZn == ERR || Res1->Prop->PsiZn == ERR ||
         Res2->Prop->PhiZn == ERR || Res2->Prop->PsiZn == ERR ||

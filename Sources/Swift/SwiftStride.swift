@@ -20,7 +20,9 @@ public class Stride {
     ///     -cId1Id2...   Process only Chains Id1, Id2 ...
     ///     -q[File]     Generate SeQuence file in FASTA format and close the program
     ///     -fFile           Output file
-    public static func predict(from file: String, arguments arg: [String]? = nil) -> [Residue]? {
+    public static func predict(from file: String, arguments arg: [String]? = nil, showReport: Bool = false) -> [Residue]? {
+        
+        var result: RChain? = nil
         
         var arguments = ["main", file] /// Basic compulsory arguments to run the program
         
@@ -33,16 +35,32 @@ public class Stride {
         
         var cArgs = arguments.map {strdup($0)}
         
-        let result = stride(Int32(arguments.count), &cArgs)
-        
+        if showReport {
+            result = stride(Int32(arguments.count), &cArgs, 1)
+        } else {
+            result = stride(Int32(arguments.count), &cArgs, 0)
+        }
+
         // Deallocate arguments
         for ptr in cArgs {
             ptr?.deallocate()
         }
         
         // Process the aminoacids and return the value
-        return processResult(result: result)
+        
+        guard let _ = result else {
+            return nil
+        }
 
+        
+        let aminos = processResult(result: result!)
+        
+        // Frees the memory
+        result!.chain.deallocate()
+        
+        result = nil
+        
+        return aminos
     }
 
     private static func processResult(result: RChain) -> [Residue]? {
@@ -66,6 +84,8 @@ public class Stride {
                 let area = cResidue.pointee.Prop.pointee.Solv
                 
                 let newResidue = Residue(type: type, structure: structure, phi: phi, psi: psi, area: area)
+                
+                cResidue.deallocate() // Frees the memory
                 
                 residues.append(newResidue)
                 

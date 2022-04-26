@@ -2,7 +2,7 @@
 
 /* #include <console.h> */  /* For Macintosh only, see readme.mac */
 
-RChain stride(int argc, char **argv)
+RChain stride(int argc, char **argv, int showReport)
 {
   CHAIN **Chain;
   HBOND **HBond;
@@ -10,10 +10,8 @@ RChain stride(int argc, char **argv)
   int Cn, NChain=0, NHBond=0, ValidChain=0;
   float **PhiPsiMapHelix, **PhiPsiMapSheet;
   register int i;
-
+    
   /* argc = ccommand(&argv); */ /* For Macintosh only, see readme.mac */
-
-
 
   Chain = (CHAIN  **)ckalloc(MAX_CHAIN*sizeof(CHAIN *));
   HBond = (HBOND  **)ckalloc(MAXHYDRBOND*sizeof(HBOND *));
@@ -88,9 +86,10 @@ RChain stride(int argc, char **argv)
       
     }
   }
-    
-  //Report(Chain,NChain,HBond,Cmd);
-    
+    // Print report only if specified
+    if (showReport == 1) {
+        Report(Chain,NChain,HBond,Cmd);
+    }
     
     RChain rchain;
     
@@ -100,11 +99,12 @@ RChain stride(int argc, char **argv)
   if( Cmd->MolScript )
     MolScript(Chain,NChain,Cmd);
 
-  //for( i=0; i<Cn; i++ ) free(Chain[i]);
+  //for( i=0; i<Cn; i++ ) free(Chain[i]); // Memory will be freed later in Swift
   for( i=0; i<NHBond; i++ ) free(HBond[i]);
   free(Cmd);
-
-    return rchain;
+  free(PhiPsiMapHelix);
+  free(PhiPsiMapSheet);
+  return rchain;
 }
 
 void ProcessStrideOptions(char **List, int ListLength, COMMAND *Cmd)

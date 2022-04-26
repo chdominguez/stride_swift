@@ -170,7 +170,6 @@ void ReportDetailed(CHAIN **Chain, int NChain, FILE *Out, COMMAND *Cmd)
     
     for( i=0; i<Chain[Cn]->NRes; i++ ) {
       p = Chain[Cn]->Rsd[i];
-        printf("Cn: %i i: %i", Cn, i);
       sprintf(Tmp,"ASG  %3s %c %4s %4d    %c   %11s   %7.2f   %7.2f   %7.1f",
 	      p->ResType,SpaceToDash(Chain[Cn]->Id),p->PDB_ResNumb,i+1,
 	      p->Prop->Asn,Translate(p->Prop->Asn),p->Prop->Phi,

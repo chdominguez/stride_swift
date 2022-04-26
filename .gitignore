@@ -3,4 +3,4 @@
 *.pyc
 src/stride
 .DS_Store
-
+.swiftpm/xcode/xcuserdata/

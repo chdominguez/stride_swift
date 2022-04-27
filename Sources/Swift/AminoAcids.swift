@@ -40,6 +40,13 @@ public enum AminoAcid: CaseIterable {
     case met
     case asn
     case gln
+    case cyx // CYM for cysteine residues involved in disulphide bridge
+    case cym // Deprotonated cys
+    case hid // Histidine with hydrogen on the delta nitrogen
+    case hie // Histidine with hydrogen on the epsilon nitrogen
+    case hip // Histidine with hydrogens on both nitrogens; this is positively charged.
+    case glh // Glutamic acid neutral form
+    case ash // Neutral form of ASP
     
     /// Full name of the amino acid (i.e. Alanine)
     var name: String {
@@ -84,6 +91,20 @@ public enum AminoAcid: CaseIterable {
             return "Asparagine"
         case .gln:
             return "Glutamine"
+        case .cyx:
+            return "Cysteine"
+        case .cym:
+            return "Cysteine"
+        case .hid:
+            return "Histidine"
+        case .hie:
+            return "Histidine"
+        case .hip:
+            return "Histidine"
+        case .glh:
+            return "Glutamic Acid"
+        case .ash:
+            return "Aspartic Acid"
         }
     }
     
@@ -130,6 +151,20 @@ public enum AminoAcid: CaseIterable {
             return "N"
         case .gln:
             return "Q"
+        case .cyx:
+            return "C"
+        case .cym:
+            return "C"
+        case .hid:
+            return "H"
+        case .hie:
+            return "H"
+        case .hip:
+            return "H"
+        case .glh:
+            return "E"
+        case .ash:
+            return "D"
         }
     }
     
@@ -176,6 +211,20 @@ public enum AminoAcid: CaseIterable {
             return "Asn"
         case .gln:
             return "Gln"
+        case .cyx:
+            return "Cyx"
+        case .cym:
+            return "Cym"
+        case .hid:
+            return "Hid"
+        case .hie:
+            return "Hie"
+        case .hip:
+            return "Hip"
+        case .glh:
+            return "Glh"
+        case .ash:
+            return "Ash"
         }
     }
     
